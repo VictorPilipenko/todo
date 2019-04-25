@@ -1,0 +1,50 @@
+.SignIn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.SignIn p {
+    margin: 0;
+    padding: 8px 0 0 0;
+}
+
+.SignIn .paper {
+    height: 420px;
+    min-width: 400px;
+    position: relative;
+}
+
+.SignIn form {
+    min-width: 400px;
+    width: 100%;
+    padding: 35px 0;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.SignIn form img {
+    align-self: center;
+}
+
+.SignIn .error {
+    color: red;
+    margin-top: 8px;
+    height: 15px;
+    max-width: 350px;
+    align-self: center;
+}
+
+.SignIn .textField {
+    width: 90%;
+}
+
+.SignIn .submit {
+    width: 90%;
+}
