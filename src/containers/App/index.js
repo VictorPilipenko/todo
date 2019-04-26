@@ -20,6 +20,7 @@ import AccountPage from "../Account";
 import * as routes from "../../utils/routes";
 import "./index.css";
 
+
 const theme = createMuiTheme({
   palette: {
     primary: blue,

@@ -15,7 +15,7 @@ const TodoApp = props => {
   useEffect(() => {
     watchTodos();
 
-    return () => unwatchTodos();
+    return () => {console.log('sdf'), unwatchTodos()} ;
   });
 
   return (

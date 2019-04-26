@@ -15,8 +15,6 @@ import {
 } from './actions';
 
 function* addTodo(action) {
-  console.log(action);
-
   yield call(
     action =>
       firestore

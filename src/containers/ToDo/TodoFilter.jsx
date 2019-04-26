@@ -13,7 +13,11 @@ const filterValues = [
   { key: "Active", value: "SHOW_ACTIVE" }
 ];
 
-const mapStateToProps = state => ({ currentFilter: state.visibilityFilter });
+const mapStateToProps = state => {
+  return {
+    currentFilter: state.visibilityFilter
+  }
+};
 
 const mapDispatchToProps = dispatch => ({
   changeFilter: event => {
@@ -25,7 +29,7 @@ const mapDispatchToProps = dispatch => ({
 
 const TodoFilter = ({ currentFilter, changeFilter }) => {
   return (
-    <FormControl style={{ width: "20%" }}>
+    <FormControl style={{ width: "100%" }}>
       <InputLabel>Filter Todos</InputLabel>
       <Select value={currentFilter} onChange={changeFilter}>
         {filterValues.map(f => (

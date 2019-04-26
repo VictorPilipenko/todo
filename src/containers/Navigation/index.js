@@ -11,11 +11,37 @@ import IconButton from "@material-ui/core/IconButton";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import { withStyles } from '@material-ui/core/styles';
 
 //utils
 import { signOut } from "./actions";
 import * as routes from "../../utils/routes";
 import "./Navigation.css";
+
+import SidePanel from '../../components/SidePanel'
+
+const drawerWidth = 240;
+
+const styles = theme => ({
+  root: {
+    display: 'flex',
+  },
+  appBar: {
+    zIndex: 0,
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing.unit * 3,
+  },
+  toolbar: theme.mixins.toolbar,
+});
 
 class Navigation extends Component {
   constructor(props) {
@@ -44,7 +70,7 @@ class Navigation extends Component {
   };
 
   renderSignIn = () => (
-    <AppBar position="static" className="Navigation">
+    <AppBar position="fixed" className="Navigation">
       <Toolbar>
         <Typography variant="title" color="inherit" className="title">
           &nbsp;
@@ -59,37 +85,46 @@ class Navigation extends Component {
   );
 
   renderMenu = (menuOpen, anchorEl) => {
+
+    // console.log(this.props.classes)
     return this.props.authUser !== null ? (
-      <AppBar position="static" className="Navigation">
-        <Toolbar>
-          <Typography variant="title" color="inherit" className="title">
-            <Link to={routes.HOME} className="signIn">
-              Firebase Full Auth
+      <React.Fragment>
+        <AppBar position="fixed" className="Navigation">
+          <Toolbar>
+            <Typography variant="title" color="inherit" className="title">
+              <Link to={routes.HOME} className="signIn">
+                Firebase
             </Link>
-          </Typography>
-          <div>
-            <IconButton
-              aria-owns={menuOpen ? "menu-appbar" : null}
-              aria-haspopup="true"
-              onClick={this.handleMenu}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              open={menuOpen}
-              onClose={this.handleClose}
-            >
-              <Link to={routes.ACCOUNT} className="links">
-                <MenuItem onClick={this.handleClose}>My account</MenuItem>
-              </Link>
-              <MenuItem onClick={this.props.onSignOut}>Sign Out</MenuItem>
-            </Menu>
-          </div>
-        </Toolbar>
-      </AppBar>
+            </Typography>
+
+            <React.Fragment>
+              <IconButton
+                aria-owns={menuOpen ? "menu-appbar" : null}
+                aria-haspopup="true"
+                onClick={this.handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                open={menuOpen}
+                onClose={this.handleClose}
+              >
+                <Link to={routes.ACCOUNT} className="links">
+                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                </Link>
+                <MenuItem onClick={this.props.onSignOut}>Sign Out</MenuItem>
+              </Menu>
+
+            </React.Fragment>
+          </Toolbar>
+        </AppBar>
+
+        <SidePanel />
+      </React.Fragment>
+
     ) : null;
   };
 
@@ -115,5 +150,6 @@ const mapDispatchToProps = dispatch => ({
 
 export default compose(
   withRouter,
+  withStyles(styles),
   connect(mapStateToProps, mapDispatchToProps)
 )(Navigation);

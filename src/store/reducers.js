@@ -5,6 +5,7 @@ import signInReducer from "./../containers/SignIn/reducer";
 import signUpReducer from "./../containers/SignUp/reducer";
 import resetPasswordReducer from "./../containers/ResetPassword/reducer";
 import todoReducer from "./../containers/ToDo/reducer";
+import { visibilityFilter } from "./../containers/ToDo/visibilityFilter";
 
 import { LOCATION_CHANGE } from "react-router-redux";
 
@@ -36,7 +37,8 @@ const rootReducer = combineReducers({
   signIn: signInReducer,
   signUp: signUpReducer,
   resetPassword: resetPasswordReducer,
-  todos: todoReducer
+  todos: todoReducer,
+  visibilityFilter: visibilityFilter
 });
 
 export default rootReducer;

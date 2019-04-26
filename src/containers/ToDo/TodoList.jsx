@@ -7,20 +7,6 @@ import { connect } from "react-redux";
 import WorkIcon from "@material-ui/icons/Work";
 import { toggleTodoRequest } from "./actions";
 
-const mapStateToProps = state => {
-  console.log(state)
-  return {
-    todos: filterTodos(state.todos, state.visibilityFilter)
-  }
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    issueToggleTodo: (id, completed) =>
-      dispatch(toggleTodoRequest(id, completed))
-  };
-};
-
 const filterTodos = (todos, filter) => {
   switch (filter) {
     case "SHOW_ALL":
@@ -36,7 +22,7 @@ const filterTodos = (todos, filter) => {
 
 const TodoItem = ({ text, completed, onClick }) => (
   <ListItem
-    style={{ height: "10%", paddingTop: "1%", paddingBottom: "1%" }}
+    // style={{ height: "10%", paddingTop: "1%", paddingBottom: "1%" }}
     button
     onClick={onClick}
   >
@@ -52,23 +38,32 @@ const TodoItem = ({ text, completed, onClick }) => (
 );
 
 const TodoList = ({ todos, issueToggleTodo }) => (
-  <div style={{ marginRight: "55%" }}>
-    <List>
-      {todos.map(t => (
-        <TodoItem
-          key={t.id}
-          {...t}
-          onClick={event => {
-            event.preventDefault();
-            issueToggleTodo(t.id, t.completed);
-          }}
-        />
-      ))}
-    </List>
-  </div>
+  <List>
+    {todos.map((t, index) => (
+      // console.log(t, index)
+      <TodoItem
+        key={index}
+        {...t}
+        onClick={event => {
+          event.preventDefault();
+          issueToggleTodo(t.id, t.completed);
+        }}
+      />
+    ))}
+  </List>
 );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TodoList);
+const mapStateToProps = state => {
+  console.log(state.todos)
+  return {
+    todos: filterTodos(state.todos, state.visibilityFilter)
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    issueToggleTodo: (id, completed) => dispatch(toggleTodoRequest(id, completed))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

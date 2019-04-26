@@ -24,6 +24,7 @@ const TodoInput = props => {
         issueAddTodo(todoText);
         setTodoText('');
       }}
+      style={{display: 'flex'}}
     >
       <InputLabel style={{ display: 'block' }}>
         <b>What needs to be done?</b>

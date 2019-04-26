@@ -5,12 +5,14 @@ import "./index.css";
 import App from "./containers/App";
 import configureStore from "./store";
 import { ConnectedRouter } from "react-router-redux";
-import createHistory from "history/createBrowserHistory";
+// import createHistory from "history/createBrowserHistory";
+
+import { createBrowserHistory } from 'history';
 
 import registerServiceWorker from "./registerServiceWorker";
 import "font-awesome/css/font-awesome.min.css";
 
-const history = createHistory();
+const history = createBrowserHistory();
 const store = configureStore(history);
 
 const rootElement = document.getElementById("root");
