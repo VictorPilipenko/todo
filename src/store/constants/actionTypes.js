@@ -14,3 +14,4 @@ export const ADD_TODO = 'ADD_TODO';
 export const TOGGLE_TODO_STATE = 'TOGGLE_TODO_STATE';
 export const DELETE_TODO = 'DELETE_TODO';
 export const SET_TODO_LIST_FILTER = 'SET_TODO_LIST_FILTER';
+export const EDIT_TODO = 'EDIT_TODO';

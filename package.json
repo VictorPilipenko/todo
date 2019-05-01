@@ -5,9 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^1.2.0",
     "@material-ui/icons": "^1.1.0",
-    "@trendmicro/react-sidenav": "^0.4.5",
     "firebase": "^5.0.4",
-    "font-awesome": "^4.7.0",
     "history": "^4.7.2",
     "prop-types": "^15.6.1",
     "react": "^16.8.6",

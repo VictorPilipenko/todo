@@ -11,6 +11,7 @@ import MailIcon from '@material-ui/icons/Mail';
 
 // import * as routes from "../../utils/routes";
 import { Link, withRouter } from "react-router-dom";
+import { Redirect } from 'react-router-dom';
 import { compose } from "recompose";
 
 const drawerWidth = 240;
@@ -59,7 +60,7 @@ function SidePanel(props) {
             </ListItem>
           </Link>
 
-          <Link to={'/'} className="links">
+          <Link to={'/account'} className="links">
             <ListItem button key={'Account'}>
               <ListItemIcon>{<MailIcon />}</ListItemIcon>
               <ListItemText primary={'Account'} />
@@ -77,6 +78,5 @@ SidePanel.propTypes = {
 };
 
 export default compose(
-  withRouter,
   withStyles(styles)
 )(SidePanel);

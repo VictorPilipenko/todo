@@ -4,6 +4,7 @@ import {
   TOGGLE_TODO_STATE,
   DELETE_TODO,
   SET_TODO_LIST_FILTER,
+  EDIT_TODO,
 } from '../constants/actionTypes';
 
 export const getTodoListRequest = uid => ({
@@ -33,3 +34,11 @@ export const setTodoListFilter = filter => ({
   type: SET_TODO_LIST_FILTER,
   payload: filter,
 });
+
+export const editTodo = (id, value) => ({
+  type: EDIT_TODO,
+  payload: {
+    id,
+    value,
+  },
+})
