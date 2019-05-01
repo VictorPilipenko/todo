@@ -53,7 +53,7 @@ class TodoList extends React.Component {
         <AppBar position="fixed" className="Navigation">
           <Toolbar>
             <Typography variant="title" color="inherit" className="title">
-              <TodoListFilterContainer />
+              {/* <TodoListFilterContainer /> */}
             </Typography>
 
             <React.Fragment>
@@ -74,7 +74,7 @@ class TodoList extends React.Component {
                 <Link to={'/'} className="links">
                   <MenuItem onClick={this.handleClose}>My account</MenuItem>
                 </Link>
-                <MenuItem><SignOutContainer/></MenuItem>
+                <MenuItem><SignOutContainer /></MenuItem>
               </Menu>
 
             </React.Fragment>
@@ -83,15 +83,11 @@ class TodoList extends React.Component {
 
         <SidePanel />
 
-
-
-
-
-
         <div className="todo-list">
           <div className="todo-list__items">
             <TransitionGroup>
-              {todoList.map(todo => (
+        
+              {/* {todoList && todoList.map(todo => (
                 <Fade key={todo.key}>
                   <TodoItemContainer
                     itemId={todo.key}
@@ -99,7 +95,9 @@ class TodoList extends React.Component {
                     completed={todo.completed}
                   />
                 </Fade>
-              ))}
+              ))} */}
+
+
             </TransitionGroup>
 
             {!todoList.length
@@ -131,7 +129,7 @@ class TodoList extends React.Component {
 
               )}
           </div>
-          <AddTodoContainer />
+          {/* <AddTodoContainer /> */}
         </div>
       </React.Fragment>
     )

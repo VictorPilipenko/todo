@@ -2,10 +2,14 @@ import {
   GET_TODO_LIST_REQUEST,
   GET_TODO_LIST_SUCCESS,
   GET_TODO_LIST_FAIL,
+  GET_TODO_LIST_FULL_REQUEST,
+  GET_TODO_LIST_FULL_SUCCESS,
+  GET_TODO_LIST_FULL_FAIL,
   ADD_TODO,
   DELETE_TODO,
   TOGGLE_TODO_STATE,
   SET_TODO_LIST_FILTER,
+  EDIT_TODO,
 } from '../constants/actionTypes';
 import { ALL } from '../constants/filterTypes';
 
@@ -36,10 +40,32 @@ export default function todo(state = initialState, action) {
         error: action.payload,
         isFetching: false,
       };
+    case GET_TODO_LIST_FULL_REQUEST:
+      return {
+        ...state,
+        error: '',
+        isFetching: true,
+      };
+    case GET_TODO_LIST_FULL_SUCCESS:
+      return {
+        ...state,
+        list: action.payload,
+        isFetching: false,
+      };
+    case GET_TODO_LIST_FULL_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+        isFetching: false,
+      };
     case ADD_TODO:
       return {
         ...state,
         list: [...state.list, action.payload],
+      };
+    case EDIT_TODO:
+      return {
+        ...state,
       };
     case DELETE_TODO:
       return {

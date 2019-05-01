@@ -20,7 +20,7 @@ const TodoItem = ({
     >
       <ListItem
         button
-        onClick={() => handleClickContent(itemId)}
+        // onClick={() => handleClickContent(itemId)}
       >
         <Avatar>
           <WorkIcon />
@@ -32,7 +32,7 @@ const TodoItem = ({
         />
       </ListItem>
 
-      <button
+      {/* <button
         type="button"
         className="todo-item__button"
         onClick={() => handleClickButton(itemId)}
@@ -41,7 +41,7 @@ const TodoItem = ({
         <IconContext.Provider value={{ className: 'todo-item__button-icon' }}>
           <FaTimes />
         </IconContext.Provider>
-      </button>
+      </button> */}
     </div>
   );
 

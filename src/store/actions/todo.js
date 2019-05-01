@@ -1,5 +1,6 @@
 import {
   GET_TODO_LIST_REQUEST,
+  GET_TODO_LIST_FULL_REQUEST,
   ADD_TODO,
   TOGGLE_TODO_STATE,
   DELETE_TODO,
@@ -10,6 +11,11 @@ import {
 export const getTodoListRequest = uid => ({
   type: GET_TODO_LIST_REQUEST,
   payload: uid,
+});
+
+export const getTodoListFullRequest = () => ({
+  type: GET_TODO_LIST_FULL_REQUEST,
+  // payload: uid,
 });
 
 export const addTodo = todo => ({

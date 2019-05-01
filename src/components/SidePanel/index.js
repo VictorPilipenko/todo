@@ -9,9 +9,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
-// import * as routes from "../../utils/routes";
-import { Link, withRouter } from "react-router-dom";
-import { Redirect } from 'react-router-dom';
+import {
+  MAIN,
+  ACCOUNT,
+} from '../../routes';
+import { Link } from "react-router-dom";
 import { compose } from "recompose";
 
 const drawerWidth = 240;
@@ -53,14 +55,14 @@ function SidePanel(props) {
         <div className={classes.toolbar} />
         <List>
 
-          <Link to={'/'} className="links">
+          <Link to={MAIN} className="links">
             <ListItem button key={'Home'}>
               <ListItemIcon>{<InboxIcon />}</ListItemIcon>
               <ListItemText primary={'Home'} />
             </ListItem>
           </Link>
 
-          <Link to={'/account'} className="links">
+          <Link to={ACCOUNT} className="links">
             <ListItem button key={'Account'}>
               <ListItemIcon>{<MailIcon />}</ListItemIcon>
               <ListItemText primary={'Account'} />

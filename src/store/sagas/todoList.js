@@ -9,6 +9,10 @@ import {
   GET_TODO_LIST_REQUEST,
   GET_TODO_LIST_SUCCESS,
   GET_TODO_LIST_FAIL,
+
+  GET_TODO_LIST_FULL_REQUEST,
+  GET_TODO_LIST_FULL_SUCCESS,
+  GET_TODO_LIST_FULL_FAIL,
 } from '../constants/actionTypes';
 
 function* fetchTodoList() {
@@ -35,8 +39,33 @@ function* fetchTodoList() {
   }
 }
 
+function* fetchTodoListFull() {
+  try {
+
+    const todoListFull = yield call(
+      () => (database.ref(`users`).once("value")
+        .then(snapshot => {
+          console.log(snapshot.val())
+          return snapshot.val()
+        })),
+      null,
+    );
+
+    yield put({
+      type: GET_TODO_LIST_FULL_SUCCESS,
+      payload: todoListFull,
+    });
+  } catch (error) {
+    yield put({
+      type: GET_TODO_LIST_FULL_FAIL,
+      payload: error.message,
+    });
+  }
+}
+
 const todoList = [
   takeLatest(GET_TODO_LIST_REQUEST, fetchTodoList),
+  takeLatest(GET_TODO_LIST_FULL_REQUEST, fetchTodoListFull),
 ];
 
 export default todoList;

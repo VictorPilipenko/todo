@@ -122,6 +122,7 @@ class TodoItemAccount extends React.Component {
           className="todo-item__button"
           onClick={this.onClickDeleteItem}
           tabIndex="0"
+          style={this.displayDefault()}
         >
           <IconContext.Provider value={{ className: 'todo-item__button-icon' }}>
             <FaTimes />

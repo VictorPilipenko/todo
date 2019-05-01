@@ -9,9 +9,6 @@ const TodoListFilter = ({ filters, handleClick, currentFilter }) => (
     {
       filters.map(filter => (
         <Button
-          className={`todo-list-filter__button ${currentFilter === filter ? 'todo-list-filter__button--active' : ''}`}
-          type="button"
-          key={uuid()}
           onClick={() => handleClick(filter)}
         >
           {filter}

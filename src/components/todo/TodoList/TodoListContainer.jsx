@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import { getTodoListRequest } from '../../../store/actions/todo';
+import { getTodoListFullRequest } from '../../../store/actions/todo';
 import TodoList from './TodoList';
 import {
   getFilteredTodoList,
@@ -22,7 +22,7 @@ class TodoListContainer extends Component {
 
   componentDidMount() {
     const { getTodoList } = this.props;
-    getTodoList(localStorage.getItem('uid'));
+    getTodoList();
   }
 
   render() {
@@ -47,16 +47,19 @@ class TodoListContainer extends Component {
   }
 }
 
-const mapStateToProps = store => ({
-  isAuth: getAuthState(store),
-  isFetching: getTodoFetchingState(store),
-  todoList: getFilteredTodoList(store),
-  currentFilter: getFilterState(store),
-});
+const mapStateToProps = store => {
+  console.log(store)
+  return {
+    isAuth: getAuthState(store),
+    isFetching: getTodoFetchingState(store),
+    todoList: store.todo.list,
+    currentFilter: getFilterState(store),
+  }
+}
 
 const mapDispatchToState = dispatch => ({
-  getTodoList: uid => (
-    dispatch(getTodoListRequest(uid))
+  getTodoList: () => (
+    dispatch(getTodoListFullRequest())
   ),
 });
 
