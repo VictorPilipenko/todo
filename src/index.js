@@ -1,34 +1,16 @@
-import React from "react";
-import { hydrate, render } from "react-dom";
-import { Provider } from "react-redux";
-import "./index.css";
-import App from "./containers/App";
-import configureStore from "./store";
-import { ConnectedRouter } from "react-router-redux";
-// import createHistory from "history/createBrowserHistory";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './components/App/App';
+import store, { history } from './store';
+import registerServiceWorker from './registerServiceWorker';
+import './index.css';
 
-import { createBrowserHistory } from 'history';
-
-import registerServiceWorker from "./registerServiceWorker";
-import "font-awesome/css/font-awesome.min.css";
-
-const history = createBrowserHistory();
-const store = configureStore(history);
-
-const rootElement = document.getElementById("root");
-
-const app = (
+ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App />
-    </ConnectedRouter>
-  </Provider>
+    <App history={history} />
+  </Provider>,
+  document.querySelector('#root'),
 );
-
-if (rootElement.hasChildNodes()) {
-  hydrate(app, rootElement);
-} else {
-  render(app, rootElement);
-}
 
 registerServiceWorker();

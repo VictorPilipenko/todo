@@ -8,9 +8,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import Divider from '@material-ui/core/Divider';
 
-import * as routes from "../../utils/routes";
+// import * as routes from "../../utils/routes";
 import { Link, withRouter } from "react-router-dom";
 import { compose } from "recompose";
 
@@ -38,7 +37,7 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar,
 });
 
-function ClippedDrawer(props) {
+function SidePanel(props) {
   const { classes } = props;
 
   return (
@@ -53,30 +52,14 @@ function ClippedDrawer(props) {
         <div className={classes.toolbar} />
         <List>
 
-          <Link to={routes.HOME} className="links">
+          <Link to={'/'} className="links">
             <ListItem button key={'Home'}>
               <ListItemIcon>{<InboxIcon />}</ListItemIcon>
               <ListItemText primary={'Home'} />
             </ListItem>
           </Link>
 
-          <Link to={routes.ACCOUNT} className="links">
-            <ListItem button key={'Account'}>
-              <ListItemIcon>{<MailIcon />}</ListItemIcon>
-              <ListItemText primary={'Account'} />
-            </ListItem>
-          </Link>
-
-          <Divider />
-
-          <Link to={routes.HOME} className="links">
-            <ListItem button key={'Home'}>
-              <ListItemIcon>{<InboxIcon />}</ListItemIcon>
-              <ListItemText primary={'Home'} />
-            </ListItem>
-          </Link>
-
-          <Link to={routes.ACCOUNT} className="links">
+          <Link to={'/'} className="links">
             <ListItem button key={'Account'}>
               <ListItemIcon>{<MailIcon />}</ListItemIcon>
               <ListItemText primary={'Account'} />
@@ -89,11 +72,11 @@ function ClippedDrawer(props) {
   );
 }
 
-ClippedDrawer.propTypes = {
+SidePanel.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
 export default compose(
   withRouter,
   withStyles(styles)
-)(ClippedDrawer);
+)(SidePanel);
