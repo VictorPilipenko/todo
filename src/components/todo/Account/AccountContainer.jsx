@@ -20,9 +20,17 @@ class AccountContainer extends Component {
     currentFilter: PropTypes.string.isRequired,
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     const { getTodoList } = this.props;
     getTodoList(localStorage.getItem('uid'));
+  }
+
+  componentDidUpdate = prevProps => {
+    console.log(prevProps.location.pathname)
+    console.log(this.props.location.pathname)
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      this.props.getTodoList(localStorage.getItem('uid')); 
+    }
   }
 
   render() {
@@ -47,12 +55,15 @@ class AccountContainer extends Component {
   }
 }
 
-const mapStateToProps = store => ({
-  isAuth: getAuthState(store),
-  isFetching: getTodoFetchingState(store),
-  todoList: getFilteredTodoList(store),
-  currentFilter: getFilterState(store),
-});
+const mapStateToProps = store => {
+  console.log(store)
+  return {
+    isAuth: getAuthState(store),
+    isFetching: getTodoFetchingState(store),
+    todoList: getFilteredTodoList(store),
+    currentFilter: getFilterState(store),
+  }
+}
 
 const mapDispatchToState = dispatch => ({
   getTodoList: uid => (

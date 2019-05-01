@@ -11,7 +11,6 @@ class TodoItemContainer extends Component {
     handleComplete: PropTypes.func.isRequired,
     completed: PropTypes.bool.isRequired,
     content: PropTypes.string.isRequired,
-    itemId: PropTypes.string.isRequired,
   };
 
   handleClickButton = (id) => {

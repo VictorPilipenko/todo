@@ -1,5 +1,4 @@
 import React from 'react';
-import uuid from 'uuid/v1';
 import PropTypes from 'prop-types';
 import './TodoListFilter.css';
 import Button from '@material-ui/core/Button';
@@ -7,9 +6,10 @@ import Button from '@material-ui/core/Button';
 const TodoListFilter = ({ filters, handleClick, currentFilter }) => (
   <div className="todo-list-filter">
     {
-      filters.map(filter => (
+      filters.map((filter,index) => (
         <Button
           onClick={() => handleClick(filter)}
+          key={index}
         >
           {filter}
         </Button>

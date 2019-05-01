@@ -5,7 +5,6 @@ import { Redirect } from 'react-router-dom';
 import { getTodoListFullRequest } from '../../../store/actions/todo';
 import TodoList from './TodoList';
 import {
-  getFilteredTodoList,
   getFilterState,
   getAuthState,
   getTodoFetchingState,
@@ -15,7 +14,6 @@ class TodoListContainer extends Component {
   static propTypes = {
     isAuth: PropTypes.bool.isRequired,
     getTodoList: PropTypes.func.isRequired,
-    todoList: PropTypes.arrayOf(PropTypes.object).isRequired,
     isFetching: PropTypes.bool.isRequired,
     currentFilter: PropTypes.string.isRequired,
   };
@@ -52,7 +50,7 @@ const mapStateToProps = store => {
   return {
     isAuth: getAuthState(store),
     isFetching: getTodoFetchingState(store),
-    todoList: store.todo.list,
+    todoList: store.todo.listFull,
     currentFilter: getFilterState(store),
   }
 }

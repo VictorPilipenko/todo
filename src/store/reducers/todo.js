@@ -15,6 +15,7 @@ import { ALL } from '../constants/filterTypes';
 
 const initialState = {
   list: [],
+  listFull: [],
   filter: ALL,
   error: '',
   isFetching: false,
@@ -49,7 +50,7 @@ export default function todo(state = initialState, action) {
     case GET_TODO_LIST_FULL_SUCCESS:
       return {
         ...state,
-        list: action.payload,
+        listFull: action.payload,
         isFetching: false,
       };
     case GET_TODO_LIST_FULL_FAIL:

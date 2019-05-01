@@ -4,9 +4,6 @@ import { TransitionGroup } from 'react-transition-group';
 import TodoItemContainer from '../../todo/TodoItem/TodoItemContainer';
 import Preloader from '../../Preloader/Preloader';
 import SignOutContainer from '../../auth/SignOut/SignOutContainer';
-import TodoListFilterContainer from '../../todo/TodoListFilter/TodoListFilterContainer';
-import AddTodoContainer from '../../todo/AddTodo/AddTodoContainer';
-import { ALL, ACTIVE, COMPLETED } from '../../../store/constants/filterTypes';
 import './TodoList.css';
 import Fade from '../../Fade/Fade';
 
@@ -22,6 +19,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 
 import SidePanel from '../../SidePanel'
+
+let arr = [];
 
 class TodoList extends React.Component {
   state = {
@@ -40,9 +39,15 @@ class TodoList extends React.Component {
     this.setState({ menuOpen: false, anchorEl: null });
   };
 
+  componentDidUpdate = () => {
+    arr = [];
+  }
+
   render() {
-    const { todoList, isFetching, currentFilter } = this.props;
+    const { todoList, isFetching } = this.props;
     const { menuOpen, anchorEl } = this.state;
+
+    
 
     if (isFetching) {
       return <Preloader />;
@@ -86,50 +91,33 @@ class TodoList extends React.Component {
         <div className="todo-list">
           <div className="todo-list__items">
             <TransitionGroup>
+
+              {
+                Object.values(todoList).forEach(function(snap) {
+                  Object.values(snap).forEach(function(snap2) {
+                    Object.values(snap2).forEach(function(snap3) {
+                      arr.push(snap3)
+                  });
+                });
+              })
+              }
+
+              {console.log(arr)}
         
-              {/* {todoList && todoList.map(todo => (
-                <Fade key={todo.key}>
+              {arr && arr.map((todo, index) => (
+                <Fade key={index}>
                   <TodoItemContainer
                     itemId={todo.key}
                     content={todo.content}
                     completed={todo.completed}
                   />
                 </Fade>
-              ))} */}
+              ))}
 
 
             </TransitionGroup>
 
-            {!todoList.length
-              && currentFilter === ALL
-              && (
-                <TransitionGroup>
-                  <Fade>
-                    <p className="todo-list__empty-text">Add your first todo ;)</p>
-                  </Fade>
-                </TransitionGroup>
-              )}
-            {!todoList.length
-              && currentFilter === ACTIVE
-              && (
-                <TransitionGroup>
-                  <Fade>
-                    <p className="todo-list__empty-text">You are complete all your todos ^^</p>
-                  </Fade>
-                </TransitionGroup>
-              )}
-            {!todoList.length
-              && currentFilter === COMPLETED
-              && (
-                <TransitionGroup>
-                  <Fade>
-                    <p className="todo-list__empty-text">You are not complete any of your todo :)</p>
-                  </Fade>
-                </TransitionGroup>
-
-              )}
-          </div>
-          {/* <AddTodoContainer /> */}
+          </div> 
         </div>
       </React.Fragment>
     )
@@ -137,7 +125,6 @@ class TodoList extends React.Component {
 }
 
 TodoList.propTypes = {
-  todoList: PropTypes.arrayOf(PropTypes.object).isRequired,
   isFetching: PropTypes.bool.isRequired,
   currentFilter: PropTypes.string.isRequired,
 };

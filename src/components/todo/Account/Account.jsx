@@ -40,6 +40,14 @@ class Account extends React.Component {
     this.setState({ menuOpen: false, anchorEl: null });
   };
 
+  componentDidUpdate = prevProps => {
+    console.log(prevProps)
+    console.log(this.props)
+    // if (prevProps.location.pathname !== this.props.location.pathname) {
+    //   this.props.getTodoList(localStorage.getItem('uid')); 
+    // }
+  }
+
   render() {
     const { todoList, isFetching, currentFilter } = this.props;
     const { menuOpen, anchorEl } = this.state;
@@ -91,7 +99,8 @@ class Account extends React.Component {
         <div className="todo-list">
           <div className="todo-list__items">
             <TransitionGroup>
-              {todoList.map(todo => (
+              {console.log(todoList)}
+              {todoList && todoList.map(todo => (
                 <Fade key={todo.key}>
                   <TodoItemAccountContainer
                     itemId={todo.key}
