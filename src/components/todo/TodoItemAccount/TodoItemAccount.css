@@ -81,6 +81,10 @@
   opacity: 1;
 }
 
+.edit-wrapper{
+  display: flex;
+}
+
 @media screen and (max-width: 620px) {
   .todo-item {
     padding: 35px 0 0 0;

@@ -76,7 +76,7 @@ class TodoList extends React.Component {
                 open={menuOpen}
                 onClose={this.handleClose}
               >
-                <Link to={'/'} className="links">
+                <Link to={'/account'} className="links">
                   <MenuItem onClick={this.handleClose}>My account</MenuItem>
                 </Link>
                 <MenuItem><SignOutContainer /></MenuItem>

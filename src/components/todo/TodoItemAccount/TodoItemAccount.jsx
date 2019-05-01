@@ -8,6 +8,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
 import WorkIcon from "@material-ui/icons/Work";
 import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
 
 class TodoItemAccount extends React.Component {
   state = {
@@ -93,33 +94,30 @@ class TodoItemAccount extends React.Component {
           onChange={this.getNameItem}
         />
 
-        <button
-          className="btn btn-outline-success mr-2"
+        <Button
           style={this.displayDefault()}
           onClick={this.onClickButtonEdit}
         >
           edit
-          </button>
+          </Button>
 
-        <button
-          className="btn btn-outline-success mr-2"
-          style={this.displayEdit()}
-          onClick={this.onClickEditItem}
-        >
-          apply
-          </button>
+        <div className='edit-wrapper'>
+          <Button
+            style={this.displayEdit()}
+            onClick={this.onClickEditItem}
+          >
+            apply
+            </Button>
 
-        <button
-          className="btn btn-outline-danger mr-2"
-          style={this.displayEdit()}
-          onClick={this.onClickButtonCancel}
-        >
-          cancel
-          </button>
+          <Button
+            style={this.displayEdit()}
+            onClick={this.onClickButtonCancel}
+          >
+            cancel
+          </Button>
+        </div>
 
-        <button
-          type="button"
-          className="todo-item__button"
+        <Button
           onClick={this.onClickDeleteItem}
           tabIndex="0"
           style={this.displayDefault()}
@@ -127,7 +125,7 @@ class TodoItemAccount extends React.Component {
           <IconContext.Provider value={{ className: 'todo-item__button-icon' }}>
             <FaTimes />
           </IconContext.Provider>
-        </button>
+        </Button>
 
       </div>
     );
