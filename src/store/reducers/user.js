@@ -37,6 +37,7 @@ export default function user(state = initialState, action) {
       };
     case SIGN_OUT:
       localStorage.removeItem('uid');
+      localStorage.removeItem('email');
       return {
         ...state,
         ...action.payload,

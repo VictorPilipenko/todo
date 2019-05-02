@@ -90,7 +90,7 @@ class AddTodo extends Component {
             <MenuItem value="">
               None
             </MenuItem>
-            {this.props.todoListFull.map((text, index) =>
+            {this.props.todoListFull && this.props.todoListFull.map((text, index) =>
               <MenuItem key={index} value={text}>
                 {text}
               </MenuItem>

@@ -27,6 +27,19 @@ class AccountContainer extends Component {
     this.props.getTodoListFull();
   }
 
+  // componentDidUpdate = prevProps => {
+  //   console.log(prevProps)
+  //   console.log(this.props)
+  //   // if (prevProps.location.pathname !== this.props.location.pathname) {
+  //   //   this.props.getTodoList(localStorage.getItem('uid')); 
+  //   // }
+  //   // this.props.todoList = [];
+
+  //   const { getTodoList } = this.props;
+  //   getTodoList(localStorage.getItem('uid'));
+  //   this.props.getTodoListFull();
+  // }
+
   render() {
     const {
       isAuth,
@@ -47,7 +60,7 @@ class AccountContainer extends Component {
         todoList={todoList}
         isFetching={isFetching}
         currentFilter={currentFilter}
-        todoListFull={Object.keys(todoListFull)}
+        todoListFull={todoListFull && Object.keys(todoListFull)}
       />
     );
   }

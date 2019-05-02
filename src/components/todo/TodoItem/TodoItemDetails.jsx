@@ -84,6 +84,10 @@ class TodoItemDetails extends React.Component {
                 {/* <TodoListFilterContainer /> */}
               </Typography>
 
+              <Typography color="inherit" className="title">
+                It's you: {localStorage.getItem('uid')}
+              </Typography>
+
               <React.Fragment>
                 <IconButton
                   aria-owns={menuOpen ? "menu-appbar" : null}
@@ -115,10 +119,10 @@ class TodoItemDetails extends React.Component {
               <Card className={classes.card}>
                 <CardContent>
                   <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    date: {new Date(parseInt(todo.created_at,10)).toString()}
+                    date: {new Date(parseInt(todo.created_at, 10)).toString()}
                   </Typography>
 
-                  <Typography variant="h5" component="h2">
+                  <Typography variant="title" component="title">
                     todo: {todo.content}
                   </Typography>
 

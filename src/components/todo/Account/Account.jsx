@@ -40,13 +40,7 @@ class Account extends React.Component {
     this.setState({ menuOpen: false, anchorEl: null });
   };
 
-  componentDidUpdate = prevProps => {
-    console.log(prevProps)
-    console.log(this.props)
-    // if (prevProps.location.pathname !== this.props.location.pathname) {
-    //   this.props.getTodoList(localStorage.getItem('uid')); 
-    // }
-  }
+
 
   render() {
     const { todoList, isFetching, currentFilter } = this.props;
@@ -62,6 +56,10 @@ class Account extends React.Component {
           <Toolbar>
             <Typography variant="title" color="inherit" className="title">
               <TodoListFilterContainer />
+            </Typography>
+
+            <Typography color="inherit" className="title">
+              It's you: {localStorage.getItem('uid')}
             </Typography>
 
             <React.Fragment>
@@ -82,7 +80,7 @@ class Account extends React.Component {
                 <NavLink to={'/account'} className="links">
                   <MenuItem onClick={this.handleClose}>My account</MenuItem>
                 </NavLink>
-                <MenuItem><SignOutContainer/></MenuItem>
+                <MenuItem><SignOutContainer /></MenuItem>
               </Menu>
 
             </React.Fragment>
@@ -98,6 +96,8 @@ class Account extends React.Component {
 
         <div className="todo-list">
           <div className="todo-list__items">
+
+            <AddTodoContainer todoListFull={this.props.todoListFull} />
             <TransitionGroup>
               {console.log(todoList)}
               {todoList && todoList.map(todo => (
@@ -141,7 +141,7 @@ class Account extends React.Component {
 
               )}
           </div>
-          <AddTodoContainer todoListFull={this.props.todoListFull}/>
+        
         </div>
       </React.Fragment>
     )

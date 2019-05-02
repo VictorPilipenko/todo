@@ -61,6 +61,10 @@ class TodoList extends React.Component {
               {/* <TodoListFilterContainer /> */}
             </Typography>
 
+            <Typography color="inherit" className="title">
+              It's you: {localStorage.getItem('uid')}
+            </Typography>
+
             <React.Fragment>
               <IconButton
                 aria-owns={menuOpen ? "menu-appbar" : null}
@@ -93,7 +97,7 @@ class TodoList extends React.Component {
             <TransitionGroup>
 
               {
-                Object.values(todoList).forEach(function (snap) {
+                todoList && Object.values(todoList).forEach(function (snap) {
                   Object.values(snap).forEach(function (snap2) {
                     Object.entries(snap2).map(e => arr.push(Object.assign(e[1], { key: e[0] })))
                   })
