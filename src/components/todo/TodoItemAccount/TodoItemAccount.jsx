@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './TodoItemAccount.css';
-import { IconContext } from 'react-icons';
-import { FaTimes } from 'react-icons/fa';
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
 import WorkIcon from "@material-ui/icons/Work";
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 class TodoItemAccount extends React.Component {
   state = {
@@ -67,6 +66,7 @@ class TodoItemAccount extends React.Component {
 
 
   render() {
+    console.log(this.props.itemId)
     return (
       <div
         className="todo-item"
@@ -122,9 +122,7 @@ class TodoItemAccount extends React.Component {
           tabIndex="0"
           style={this.displayDefault()}
         >
-          <IconContext.Provider value={{ className: 'todo-item__button-icon' }}>
-            <FaTimes />
-          </IconContext.Provider>
+            <DeleteIcon />
         </Button>
 
       </div>

@@ -5,6 +5,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
 import WorkIcon from "@material-ui/icons/Work";
+import { Link } from "react-router-dom";
 
 const TodoItem = ({
   content,
@@ -18,6 +19,9 @@ const TodoItem = ({
     >
       <ListItem
         button
+        component={Link} 
+        to={'/todo/' + itemId} 
+        key={itemId}
       >
         <Avatar>
           <WorkIcon />

@@ -101,6 +101,7 @@ class Account extends React.Component {
             <TransitionGroup>
               {console.log(todoList)}
               {todoList && todoList.map(todo => (
+                // console.log(todo.key)
                 <Fade key={todo.key}>
                   <TodoItemAccountContainer
                     itemId={todo.key}
@@ -140,7 +141,7 @@ class Account extends React.Component {
 
               )}
           </div>
-          <AddTodoContainer />
+          <AddTodoContainer todoListFull={this.props.todoListFull}/>
         </div>
       </React.Fragment>
     )

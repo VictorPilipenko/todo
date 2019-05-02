@@ -18,13 +18,15 @@ function* createUser(action) {
       action.payload.email,
     );
 
-    localStorage.setItem('user', user.user);
+    localStorage.setItem('uid', user.user.uid);
+    localStorage.setItem('email', user.user.email);
     yield put({
       type: SIGN_IN_SUCCESS,
-      payload: user.user,
+      payload: user.user.uid,
     });
   } catch (error) {
-    localStorage.removeItem('user');
+    localStorage.removeItem('uid');
+    localStorage.removeItem('email');
     yield put({
       type: SIGN_IN_FAIL,
       payload: error.message,

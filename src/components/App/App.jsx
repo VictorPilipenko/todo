@@ -8,11 +8,15 @@ import SignInContainer from '../auth/SignIn/SignInContainer';
 import TodoListContainer from '../todo/TodoList/TodoListContainer';
 import SignUpContainer from '../auth/SignUp/SignUpContainer';
 import AccountContainer from '../todo/Account/AccountContainer';
+import TodoListForExecutionContainer from '../todo/TodoListForExecution/TodoListForExecutionContainer';
+import TodoItemDetails from '../todo/TodoItem/TodoItemDetails';
 import {
   MAIN,
   LOGIN,
   REGISTER,
   ACCOUNT,
+  FOREXECUTION,
+  TODODETAILS,
 } from '../../routes';
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import blue from "@material-ui/core/colors/blue";
@@ -33,6 +37,8 @@ const App = () => (
         <Route path={LOGIN} component={SignInContainer} />
         <Route path={REGISTER} component={SignUpContainer} />
         <Route path={ACCOUNT} component={AccountContainer} />
+        <Route path={FOREXECUTION} component={TodoListForExecutionContainer} />
+        <Route path={TODODETAILS} component={TodoItemDetails} />
       </Switch>
     </MuiThemeProvider>
   </BrowserRouter>

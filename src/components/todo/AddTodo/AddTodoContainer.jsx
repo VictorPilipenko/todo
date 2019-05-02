@@ -3,19 +3,16 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import uuid from 'uuid/v1';
 import { addTodo } from '../../../store/actions/todo';
+import { getTodoListFullRequest } from '../../../store/actions/todo';
 import AddTodo from './AddTodo';
 import { database } from '../../../store/firebase';
-
-const mapDispatchToState = dispatch => ({
-  handleAdd: todo => dispatch(addTodo(todo)),
-});
 
 class AddTodoContainer extends Component {
   static propTypes = {
     handleAdd: PropTypes.func.isRequired,
   };
 
-  handleSubmit = (ev, content) => {
+  handleSubmit = (ev, content, executor) => {
     ev.preventDefault();
     const { handleAdd } = this.props;
     const id = uuid();
@@ -27,9 +24,10 @@ class AddTodoContainer extends Component {
       completed: false,
       created_at: date,
       owner: localStorage.getItem('uid'),
+      executor
     });
 
-    // console.log(localStorage.getItem('email'))
+    // console.log(Object.keys(this.props.todoList))
 
     // console.log(JSON.stringify(localStorage.getItem('user')))
 
@@ -37,7 +35,8 @@ class AddTodoContainer extends Component {
       content,
       completed: false,
       created_at: date,
-      owner: localStorage.getItem('uid')
+      owner: localStorage.getItem('uid'),
+      executor
     });
   };
 
@@ -46,10 +45,15 @@ class AddTodoContainer extends Component {
       <div>
         <AddTodo
           handleSubmit={this.handleSubmit}
+          todoListFull={this.props.todoListFull}
         />
       </div>
     );
   }
 }
+
+const mapDispatchToState = dispatch => ({
+  handleAdd: todo => dispatch(addTodo(todo)),
+});
 
 export default connect(null, mapDispatchToState)(AddTodoContainer);

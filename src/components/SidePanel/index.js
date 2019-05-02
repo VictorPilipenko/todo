@@ -12,6 +12,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import {
   MAIN,
   ACCOUNT,
+  FOREXECUTION,
 } from '../../routes';
 import { Link } from "react-router-dom";
 import { compose } from "recompose";
@@ -56,9 +57,9 @@ function SidePanel(props) {
         <List>
 
           <Link to={MAIN} className="links">
-            <ListItem button key={'Home'}>
+            <ListItem button key={'Dashboard'}>
               <ListItemIcon>{<InboxIcon />}</ListItemIcon>
-              <ListItemText primary={'Home'} />
+              <ListItemText primary={'Dashboard'} />
             </ListItem>
           </Link>
 
@@ -66,6 +67,13 @@ function SidePanel(props) {
             <ListItem button key={'Account'}>
               <ListItemIcon>{<MailIcon />}</ListItemIcon>
               <ListItemText primary={'Account'} />
+            </ListItem>
+          </Link>
+
+          <Link to={FOREXECUTION} className="links">
+            <ListItem button key={'For Execution'}>
+              <ListItemIcon>{<MailIcon />}</ListItemIcon>
+              <ListItemText primary={'For Execution'} />
             </ListItem>
           </Link>
 

@@ -2,29 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import { getTodoListRequest } from '../../../store/actions/todo';
-import Account from './Account';
+import { getTodoListFullRequest } from '../../../store/actions/todo';
+import TodoListForExecution from './TodoListForExecution';
 import {
-  getFilteredTodoList,
   getFilterState,
   getAuthState,
   getTodoFetchingState,
 } from '../../../store/selectors';
-import { getTodoListFullRequest } from '../../../store/actions/todo';
 
-class AccountContainer extends Component {
+class TodoListForExecutionContainer extends Component {
   static propTypes = {
     isAuth: PropTypes.bool.isRequired,
     getTodoList: PropTypes.func.isRequired,
-    todoList: PropTypes.arrayOf(PropTypes.object).isRequired,
     isFetching: PropTypes.bool.isRequired,
     currentFilter: PropTypes.string.isRequired,
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
     const { getTodoList } = this.props;
-    getTodoList(localStorage.getItem('uid'));
-    this.props.getTodoListFull();
+    getTodoList();
   }
 
   render() {
@@ -33,21 +29,17 @@ class AccountContainer extends Component {
       todoList,
       isFetching,
       currentFilter,
-      todoListFull
     } = this.props;
 
     if (!isAuth) {
       return <Redirect to="/login" />;
     }
 
-    console.log(todoList)
-
     return (
-      <Account
+      <TodoListForExecution
         todoList={todoList}
         isFetching={isFetching}
         currentFilter={currentFilter}
-        todoListFull={Object.keys(todoListFull)}
       />
     );
   }
@@ -58,19 +50,15 @@ const mapStateToProps = store => {
   return {
     isAuth: getAuthState(store),
     isFetching: getTodoFetchingState(store),
-    todoList: getFilteredTodoList(store),
+    todoList: store.todo.listFull,
     currentFilter: getFilterState(store),
-    todoListFull: store.todo.listFull,
   }
 }
 
 const mapDispatchToState = dispatch => ({
-  getTodoList: uid => (
-    dispatch(getTodoListRequest(uid))
-  ),
-  getTodoListFull: () => (
+  getTodoList: () => (
     dispatch(getTodoListFullRequest())
   ),
 });
 
-export default connect(mapStateToProps, mapDispatchToState)(AccountContainer);
+export default connect(mapStateToProps, mapDispatchToState)(TodoListForExecutionContainer);

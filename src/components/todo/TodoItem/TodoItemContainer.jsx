@@ -29,6 +29,7 @@ class TodoItemContainer extends Component {
 
   render() {
     const { content, itemId, completed } = this.props;
+    console.log(this.props)
     return (
       <TodoItem
         itemId={itemId}

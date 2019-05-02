@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TransitionGroup } from 'react-transition-group';
-import TodoItemContainer from '../../todo/TodoItem/TodoItemContainer';
+import TodoItemContainer from '../TodoItem/TodoItemContainer';
 import Preloader from '../../Preloader/Preloader';
 import SignOutContainer from '../../auth/SignOut/SignOutContainer';
-import './TodoList.css';
+import './TodoListForExecution.css';
 import Fade from '../../Fade/Fade';
 
 import { Link } from "react-router-dom";
@@ -22,7 +22,7 @@ import SidePanel from '../../SidePanel'
 
 let arr = [];
 
-class TodoList extends React.Component {
+class TodoListForExecution extends React.Component {
   state = {
     menuOpen: false,
     anchorEl: null
@@ -47,7 +47,7 @@ class TodoList extends React.Component {
     const { todoList, isFetching } = this.props;
     const { menuOpen, anchorEl } = this.state;
 
-
+    
 
     if (isFetching) {
       return <Preloader />;
@@ -100,9 +100,10 @@ class TodoList extends React.Component {
                 })
               }
 
-
+              {console.log(arr)}
+        
               {arr && arr.map((todo, index) => (
-                // console.log(todo.key)
+                todo.executor === localStorage.getItem('uid') ? 
                 <Fade key={index}>
                   <TodoItemContainer
                     itemId={todo.key}
@@ -110,21 +111,22 @@ class TodoList extends React.Component {
                     completed={todo.completed}
                   />
                 </Fade>
+                : null
               ))}
 
 
             </TransitionGroup>
 
-          </div>
+          </div> 
         </div>
       </React.Fragment>
     )
   }
 }
 
-TodoList.propTypes = {
+TodoListForExecution.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   currentFilter: PropTypes.string.isRequired,
 };
 
-export default TodoList;
+export default TodoListForExecution;
