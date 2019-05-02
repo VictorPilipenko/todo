@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import uuid from 'uuid/v1';
 import { addTodo } from '../../../store/actions/todo';
-import { getTodoListFullRequest } from '../../../store/actions/todo';
 import AddTodo from './AddTodo';
 import { database } from '../../../store/firebase';
 

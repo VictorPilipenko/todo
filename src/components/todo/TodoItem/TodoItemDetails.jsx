@@ -67,11 +67,9 @@ class TodoItemDetails extends React.Component {
 
   render() {
     const { todo, id } = this.props;
-    const { todoList, isFetching } = this.props;
     const { menuOpen, anchorEl } = this.state;
 
     const { classes } = this.props;
-    const bull = <span className={classes.bullet}>•</span>;
 
 
     console.log(todo.key)
@@ -117,7 +115,7 @@ class TodoItemDetails extends React.Component {
               <Card className={classes.card}>
                 <CardContent>
                   <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    date: {new Date(parseInt(todo.created_at)).toString()}
+                    date: {new Date(parseInt(todo.created_at,10)).toString()}
                   </Typography>
 
                   <Typography variant="h5" component="h2">
